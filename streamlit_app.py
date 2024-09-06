@@ -4,11 +4,11 @@ from streamlit_gsheets import GSheetsConnection
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read(spreadsheet="spreadsheet", worksheet="worksheet")
+df = conn.read()
 
 # Print results.
 for row in df.itertuples():
-    st.write(f"{row.Question}")
+    st.write(f"{int(row.Id)} - {row.Question}")
 
 
 # st.title("🎈 My new app")
