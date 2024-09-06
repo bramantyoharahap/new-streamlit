@@ -4,7 +4,7 @@ from streamlit_gsheets import GSheetsConnection
 # Create a connection object.
 conn = st.connection("gsheets", type=GSheetsConnection)
 
-df = conn.read()
+df = conn.read(spreadsheet=None, worksheet=None)
 
 # Print results.
 for row in df.itertuples():
