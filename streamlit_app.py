@@ -39,8 +39,11 @@ def fn1():
             """)
         st.bar_chart(_df, x="Sequence", y="Responder", color="Rank", stack=None)
         
-def fn2():
-    for i in range(1,30):
+def fn2(id_domain):
+    q = sqldf(f"select cast(id as int) as id from df_question where domain={id_domain}")
+    print("question", q)
+    # for i in range(1,30):
+    for i,row in q.iterrows():
         _df = sqldf(f"""
             WITH T AS(            
                 select 
@@ -56,7 +59,7 @@ def fn2():
                 left join df_question as c on c.Id = a.Question
                 inner join df_domain as d on d.Id = c.Domain 
                 left join df_option as e on e.Id = b.Option
-                where a.Question = {i}
+                where a.Question = {row['id']}
             )
             SELECT 
                 Sequence,
@@ -82,7 +85,7 @@ def fn2():
             left join df_question as c on c.Id = a.Question
             inner join df_domain as d on d.Id = c.Domain 
             left join df_option as e on e.Id = b.Option
-            where a.Question = {i}
+            where a.Question = {row['id']}
             group by d.Name
                        """)
         
@@ -162,7 +165,8 @@ def fn3():
         
         fig.update_yaxes(range=[0,50])
         st.plotly_chart(fig)
-        # st.bar_chart(_df, x="Sequence", y="ResponderCount", color="Rank", stack=None)
+        
+        fn2(i)
         
 # fn1()
 # fn2()
