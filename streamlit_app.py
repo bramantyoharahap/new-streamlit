@@ -18,7 +18,7 @@ df_response_header = conn.read(spreadsheet=spreadsheet_response, worksheet="Resp
 df_response_detail = conn.read(spreadsheet=spreadsheet_response, worksheet="Response - Detail")
 # df_response_header = conn.read(spreadsheet=spreadsheet_response, worksheet="RH")
 # df_response_detail = conn.read(spreadsheet=spreadsheet_response, worksheet="RD")
-df_sale = conn.read(spreadsheet=spreadsheet_master, worksheet="Test")
+# df_sale = conn.read(spreadsheet=spreadsheet_master, worksheet="Test")
 
 # response_data = pd.merge(left= df_response_header, right=df_response_detail, left_on="Id", right_on="ResponseId")
 # response_data = pd.merge(left= response_data, right=df_option, left_on="Option", right_on="Id")
